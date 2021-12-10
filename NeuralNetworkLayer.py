@@ -19,7 +19,10 @@ class NeuralNetworkLayer:
         
         # Initial range of randoms weights and biases is [-0.50, 0.50].
         randRange = 0.5
+        
+        # Seed to constant for consistent outputs, per project criteria.
         np.random.seed(171317)
+        
         self.weights = np.random.uniform(-randRange, randRange, size=(next_num_neurons, cur_num_neurons))
         self.biases = np.random.uniform(-randRange, randRange, size=(next_num_neurons, 1))
         self.output = None

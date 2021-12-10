@@ -35,6 +35,8 @@ class DigitRecognizerNeuralNetwork:
         self.iterations = iterations
         self.alpha = alpha
         
+        self.accuracy_progress = []
+        
         # train the model if it is a training network, otherwise test cross validation data.
         if isTraining:
             self.gradient_descent()
@@ -146,8 +148,11 @@ class DigitRecognizerNeuralNetwork:
         
         neural_network_output = self.outputLayer.output
         self.predictions = self.get_predictions(neural_network_output)
-        accuracy = self.get_accuracy(self.predictions, self.Y)
-        print(f"Accuracy:\t{accuracy*100:.2f}%")
+        
+        accuracy = self.get_accuracy(self.predictions, self.Y) * 100
+        self.accuracy_progress.append(accuracy)
+        
+        print(f"Accuracy:\t\t{accuracy:.2f}%")
     
     
     def gradient_descent(self) -> None:
